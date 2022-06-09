@@ -8,10 +8,10 @@ import {
 import dynamic from 'next/dynamic'
 import { useLocalStorage } from '@mantine/hooks'
 import { NotificationsProvider } from '@mantine/notifications'
-import { RecoilRoot } from 'recoil'
-import { QueryClient, QueryClientProvider } from 'react-query'
+// import { RecoilRoot } from 'recoil'
+// import { QueryClient, QueryClientProvider } from 'react-query'
 
-const queryClient = new QueryClient()
+// const queryClient = new QueryClient()
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -63,8 +63,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
   return (
-    <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
+    // <RecoilRoot>
+      // <QueryClientProvider client={queryClient}>
         <ColorSchemeProvider
           colorScheme={colorScheme}
           toggleColorScheme={toggleColorScheme}
@@ -79,8 +79,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             </NotificationsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
-      </QueryClientProvider>
-    </RecoilRoot>
+     // </QueryClientProvider>
+   // </RecoilRoot>
   )
 }
 
