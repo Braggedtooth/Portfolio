@@ -1,0 +1,42 @@
+{
+  "name": "Next Template",
+  "version": "0.1",
+  "description": "pwa app",
+  "main": "index.js",
+  "repository": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@mantine/core": "^4.1.1",
+    "@mantine/form": "^4.1.1",
+    "@mantine/hooks": "^4.1.1",
+    "@mantine/modals": "^4.1.1",
+    "@mantine/next": "^4.1.1",
+    "@mantine/notifications": "^4.1.1",
+    "axios": "^0.26.1",
+    "next": "12.1.4",
+    "next-pwa": "^5.5.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+  },
+
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.43",
+    "eslint": "8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "12.1.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.1",
+    "typescript": "^4.6.3"
+  }
+}
