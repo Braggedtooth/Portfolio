@@ -1,0 +1,3 @@
+const REVALIDATE_SECONDS = parseInt(process.env.NEXT_PUBLIC_REVALIDATE, 10)
+
+export { REVALIDATE_SECONDS }
