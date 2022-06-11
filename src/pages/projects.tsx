@@ -1,20 +1,23 @@
-import { useRouter } from 'next/router'
 import React from 'react'
-import Button from '../components/atoms/button'
-import { ProjectData, ProjectType } from '../data/project'
+import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { REVALIDATE_SECONDS } from '../utils/constants'
+import { IProject } from '../types/projects'
+import ProjectData from '../data/project'
+import Button from '../components/atoms/button'
 
 type projectProps = {
-  projects: ProjectType[]
+  projects: IProject[]
 }
 const Projects = ({ projects }: projectProps) => {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
-  const [Sproject, setProject] = React.useState<ProjectType | null>(null)
-  const handleSelect = (selectedProject: ProjectType) => {
+  const [Sproject, setProject] = React.useState<IProject | null>(null)
+  const handleSelect = (selectedProject: IProject) => {
     setProject(selectedProject)
     setOpen(true)
   }
+
   return (
     <div>
       <h1>Projects</h1>
@@ -49,7 +52,7 @@ const Projects = ({ projects }: projectProps) => {
 }
 
 export default Projects
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const projects = await ProjectData
   return {
     props: {
