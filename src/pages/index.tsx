@@ -1,12 +1,16 @@
-import { useRouter } from 'next/router'
 import React from 'react'
-import Button from '../components/atoms/button'
-import WhoAmI, { calculateAge, User } from '../data/user'
+import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+import CalculateAge from '../utils/calculateAge'
 import { REVALIDATE_SECONDS } from '../utils/constants'
+import UserData from '../data/user'
+import IUser from '../types/user'
+import Button from '../components/atoms/button'
 
 type userProps = {
-  user: User
+  user: IUser
 }
+
 const Index = ({ user }: userProps) => {
   const router = useRouter()
   return (
@@ -14,7 +18,7 @@ const Index = ({ user }: userProps) => {
       <h1>Hello, Welcome to my portfolio</h1>
       <h2>
         I am {user.name}. I live in {user.city} and i am{' '}
-        {calculateAge(new Date(user.dob))} years old.
+        {CalculateAge(new Date(user.dob))} years old.
       </h2>
       <p> {user.about}</p>
       <Button
@@ -39,8 +43,8 @@ const Index = ({ user }: userProps) => {
 }
 
 export default Index
-export const getStaticProps = async () => {
-  const user = await WhoAmI
+export const getStaticProps: GetStaticProps = async () => {
+  const user = await UserData
   return {
     props: {
       user
