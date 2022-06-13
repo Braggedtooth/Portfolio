@@ -1,11 +1,20 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
+import {
+  MdCalendarToday,
+  MdEmail,
+  MdLocationCity,
+  MdPhone
+} from 'react-icons/md'
 import CalculateAge from '../utils/calculateAge'
 import { REVALIDATE_SECONDS } from '../utils/constants'
 import UserData from '../data/user'
 import IUser from '../types/user'
-import Button from '../components/atoms/button'
+import ProfileImage from '../components/atoms/ProfileImage'
+import TitleTag from '../components/atoms/TitleTag'
+import ContactPill from '../components/atoms/ContactPill'
+import Button from '../components/atoms/Button'
 
 type userProps = {
   user: IUser
@@ -22,22 +31,18 @@ const Index = ({ user }: userProps) => {
       </h2>
       <p> {user.about}</p>
       <Button
-        color="#fff"
-        size={{ w: 120, h: 40 }}
-        p={0}
-        bg="#333"
-        onClick={() => console.log('hello')}
-      >
-        Hello
-      </Button>
-      <Button
-        color="#efe"
-        size={{ w: 100, h: 30 }}
-        bg="#e59"
-        label="Projects"
-        ml={100}
+        p={5}
+        size={{ h: 40, w: 'auto' }}
         onClick={() => router.push('/projects')}
+        label="View Projects"
       />
+
+      <ProfileImage src={user.imgUrl} />
+      <TitleTag title={user.worktitle} />
+      <ContactPill Icon={MdEmail} details={user.contact.email} />
+      <ContactPill Icon={MdPhone} details={`+${user.contact.telephone}`} />
+      <ContactPill Icon={MdLocationCity} details={user.city} />
+      <ContactPill Icon={MdCalendarToday} details={user.dob} />
     </div>
   )
 }

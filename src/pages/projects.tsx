@@ -6,6 +6,8 @@ import { IProject } from '../types/projects'
 import ProjectData from '../data/project'
 import Button from '../components/atoms/button'
 
+
+
 type projectProps = {
   projects: IProject[]
 }
@@ -15,7 +17,10 @@ const Projects = ({ projects }: projectProps) => {
   const [Sproject, setProject] = React.useState<IProject | null>(null)
   const handleSelect = (selectedProject: IProject) => {
     setProject(selectedProject)
-    setOpen(true)
+    setOpen(!open)
+    if (open) {
+      setProject(null)
+    }
   }
 
   return (
@@ -41,9 +46,8 @@ const Projects = ({ projects }: projectProps) => {
               p={0}
               bg="#333"
               onClick={() => handleSelect(project)}
-            >
-              open
-            </Button>
+              label={project.id === Sproject?.id ? 'Close' : 'View'}
+            />
           </div>
         )
       })}
