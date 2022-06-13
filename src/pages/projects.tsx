@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { REVALIDATE_SECONDS } from '../utils/constants'
 import { IProject } from '../types/projects'
 import ProjectData from '../data/project'
-import Button from '../components/atoms/button'
+import Button from '../components/atoms/Button'
 
 
 

@@ -1,6 +1,5 @@
-import styled from 'styled-components'
 import React from 'react'
-import { darken, lighten } from 'polished'
+import StyledButton from '../_styled/StyledButton'
 
 type sizeType = { h: number | string; w: number | string }
 export interface StyledProps {
@@ -25,32 +24,6 @@ interface ButtonProps extends StyledProps {
   children?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
-
-const StyledButton = styled.button((props: StyledProps) => ({
-  color: props.color,
-  height: props.size?.h,
-  width: props.size?.w,
-  background: props.bg,
-  border: props.border || 'none',
-  fontSize: '1.1rem',
-  margin: props.m,
-  padding: props.p,
-  marginTop: props.mt,
-  marginLeft: props.ml,
-  marginRight: props.mr,
-  marginBottom: props.mb,
-  paddingTop: props.pt,
-  paddingBottom: props.pb,
-  paddingLeft: props.pl,
-  paddingRight: props.pr,
-  borderRadius: props.borderRadius || 25,
-  '&:hover': {
-    backgroundColor: lighten(0.1, props.bg),
-    cursor: 'pointer',
-    color: darken(0.5, props.color),
-    transition: '0.2s'
-  }
-}))
 
 const Button = (props: ButtonProps) => {
   const {
