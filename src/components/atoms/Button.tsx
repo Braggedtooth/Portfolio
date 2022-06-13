@@ -1,26 +1,8 @@
 import React from 'react'
-import StyledButton from '../_styled/StyledButton'
+import StyledButton, { StyledProps } from '../_styled/StyledButton'
 
-type sizeType = { h: number | string; w: number | string }
-export interface StyledProps {
-  color?: string
-  size: sizeType
-  borderRadius?: number
-  border?: string
-  bg?: string
-  p?: number
-  m?: number
-  pt?: number
-  pb?: number
-  pl?: number
-  pr?: number
-  mt?: number
-  mb?: number
-  ml?: number
-  mr?: number
-}
-interface ButtonProps extends StyledProps {
-  label?: string
+interface ButtonProps extends Partial<StyledProps> {
+  label: string
   children?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
@@ -33,18 +15,10 @@ const Button = (props: ButtonProps) => {
     borderRadius = 25,
     onClick,
     label,
-
     bg = '#333',
-    p,
-    m,
-    pt,
-    pb,
-    pl,
-    pr,
-    mt,
-    mb,
-    ml,
-    mr,
+    p = '0.5rem',
+    m = '0.5rem',
+    style,
     children
   } = props
 
@@ -58,14 +32,7 @@ const Button = (props: ButtonProps) => {
       m={m}
       bg={bg}
       p={p}
-      pb={pb}
-      pl={pl}
-      pt={pt}
-      pr={pr}
-      mb={mb}
-      ml={ml}
-      mt={mt}
-      mr={mr}
+      style={style}
     >
       {children || label}
     </StyledButton>

@@ -30,12 +30,8 @@ const Index = ({ user }: userProps) => {
         {CalculateAge(new Date(user.dob))} years old.
       </h2>
       <p> {user.about}</p>
-      <Button
-        p={5}
-        size={{ h: 40, w: 'auto' }}
-        onClick={() => router.push('/projects')}
-        label="View Projects"
-      />
+      <Button onClick={() => router.push('/projects')} label="View Projects" />
+      <Button label="H" size="small" />
 
       <ProfileImage src={user.imgUrl} />
       <TitleTag title={user.worktitle} />
