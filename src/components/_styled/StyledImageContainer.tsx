@@ -4,9 +4,8 @@ const StyledProfileImageContainer = styled.div`
   width: 250px;
   height: 250px;
   padding: 0.5rem;
-  margin: 0.5rem;
-  background-color: #333;
-  border-radius: 20%;
+  margin: 0.5rem auto;
+
   overflow: hidden;
   display: flex;
   justify-content: center;

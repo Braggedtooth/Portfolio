@@ -1,43 +1,43 @@
 import React from 'react'
 import Image from 'next/image'
 import StyledProjectCard from '../_styled/StyledProjectCard'
+import StyledContainer from '../_styled/StyleContainer'
+import theme from '../../config/theme'
+import { IProject } from '../../types/projects'
+import truncate from '../../utils/truncate'
 
-const ProjectCard = () => {
+const ProjectCard = ({ project }: { project: IProject }) => {
+  const { image, description, name } = project
   return (
     <StyledProjectCard as="a" href="#">
-      <div
-        style={{
-          borderTopLeftRadius: '10px',
-          backgroundColor: '#343A40',
-          border: '1px solid #343A40',
-          borderBottom: 'none',
-          borderTopRightRadius: '10px',
-          height: '50%'
-        }}
+      <StyledContainer
+        height="50%"
+        width="auto"
+        backgroundColor={theme.colors.grey}
+        borderRadius="10px 10px 0 0"
       >
-        <Image
-          src="https://picsum.photos/200/300/?blur=1"
-          alt="project image"
-          width="100"
-          height="100"
-          style={{ borderRadius: '20px' }}
-        />
-      </div>
-      <div
+        {image && (
+          <Image
+            src={image}
+            alt="project image"
+            width="100"
+            height="100"
+            style={{ borderRadius: '20px' }}
+          />
+        )}
+        <h2 style={{ padding: 0, margin: 0 }}>{name}</h2>
+      </StyledContainer>
+      <StyledContainer
+        width="auto"
         style={{
           height: '50%',
-          backgroundColor: '#212529',
-          border: '1px solid #343A40',
+          borderTop: '1px solid #fff',
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px'
         }}
       >
-        <h1>Project Card</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-          blanditiis
-        </p>
-      </div>
+        <p>{truncate(description, 50)}</p>
+      </StyledContainer>
     </StyledProjectCard>
   )
 }

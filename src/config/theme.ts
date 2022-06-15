@@ -1,28 +1,39 @@
-import { padding } from 'polished'
+import Theme from '../types/theme'
 
-const theme = {
-  darkMode: true,
-  colour: {
-    primary: '#3D315B',
-    secondary: '#444B6E',
-    background: '#708B75',
-    link: '#9AB87A'
+const theme: Theme = {
+  colorScheme: 'dark',
+  colors: {
+    white: '#FFFFFC',
+    black: '#212529',
+    grey: '#343A40',
+    primary: '#048A81',
+    secondary: '#F79256',
+    link: '#72DDF7'
   },
   font: {
     size: {
-      extraSmall: '14px',
-      small: '16px',
-      medium: '18px',
-      large: '20px',
-      extraLarge: '24px'
+      xs: '14px',
+      sm: '16px',
+      md: '18px',
+      lg: '20px',
+      xl: '24px'
     },
-    family: 'sans-serif'
+    family: {
+      primary: '"Exo", sans-serif',
+      secondary: '"Roboto", sans-serif'
+    },
+    weight: {
+      light: '300',
+      regular: '400',
+      bold: '700'
+    }
   },
   breakpoint: {
-    mobile: '375px',
-    tablet: '600px',
-    laptop: '1200px',
-    desktop: '1600px'
+    xs: '576px',
+    sm: '768px',
+    md: '	992px',
+    lg: '1200px',
+    xl: '1400px'
   }
 }
 

@@ -1,56 +1,44 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
-import {
-  MdCalendarToday,
-  MdEmail,
-  MdLocationCity,
-  MdPhone
-} from 'react-icons/md'
-import CalculateAge from '../utils/calculateAge'
+import calculateAge from '../utils/calculateAge'
 import { REVALIDATE_SECONDS } from '../utils/constants'
 import UserData from '../data/user'
 import IUser from '../types/user'
-import ProfileImage from '../components/atoms/ProfileImage'
-import TitleTag from '../components/atoms/TitleTag'
-import ContactPill from '../components/atoms/ContactPill'
-import Button from '../components/atoms/Button'
-import ProjectCard from '../components/atoms/ProjectCard'
+import Layout from '../layout'
+import ProjectData from '../data/project'
 
 type userProps = {
   user: IUser
 }
 
 const Index = ({ user }: userProps) => {
-  const router = useRouter()
   return (
-    <div>
+    <div
+      style={{
+        padding: '1rem'
+      }}
+    >
       <h1>Hello, Welcome to my portfolio</h1>
       <h2>
         I am {user.name}. I live in {user.city} and i am{' '}
-        {CalculateAge(new Date(user.dob))} years old.
+        {calculateAge(new Date(user.dob))} years old.
       </h2>
       <p> {user.about}</p>
-      <Button onClick={() => router.push('/projects')} label="View Projects" />
-      <Button label="H" size="small" />
-
-      <ProjectCard />
-      <ProfileImage src={user.imgUrl} />
-      <TitleTag title={user.worktitle} />
-      <ContactPill Icon={MdEmail} details={user.contact.email} />
-      <ContactPill Icon={MdPhone} details={`+${user.contact.telephone}`} />
-      <ContactPill Icon={MdLocationCity} details={user.city} />
-      <ContactPill Icon={MdCalendarToday} details={user.dob} />
     </div>
   )
 }
 
 export default Index
+Index.getLayout = (page: ReactElement, user: IUser) => (
+  <Layout data={user}>{page}</Layout>
+)
 export const getStaticProps: GetStaticProps = async () => {
   const user = await UserData
+  const projects = await ProjectData
   return {
     props: {
-      user
+      user,
+      projects
     },
     revalidate: REVALIDATE_SECONDS
   }
