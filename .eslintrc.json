@@ -13,7 +13,8 @@
         {
           "extensions": [".tsx", ".ts", ".jsx", ".js"]
         }
-      ]
+      ],
+     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
   }
   
