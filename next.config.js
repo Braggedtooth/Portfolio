@@ -8,6 +8,6 @@ module.exports = withPWA({
     disable: process.env.NODE_ENV === 'development'
   },
   images: {
-    domains: ['avatars.githubusercontent.com']
+    domains: ['avatars.githubusercontent.com', 'picsum.photos']
   }
 })

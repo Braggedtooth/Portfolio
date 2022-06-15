@@ -15,6 +15,7 @@ import ProfileImage from '../components/atoms/ProfileImage'
 import TitleTag from '../components/atoms/TitleTag'
 import ContactPill from '../components/atoms/ContactPill'
 import Button from '../components/atoms/Button'
+import ProjectCard from '../components/atoms/ProjectCard'
 
 type userProps = {
   user: IUser
@@ -33,6 +34,7 @@ const Index = ({ user }: userProps) => {
       <Button onClick={() => router.push('/projects')} label="View Projects" />
       <Button label="H" size="small" />
 
+      <ProjectCard />
       <ProfileImage src={user.imgUrl} />
       <TitleTag title={user.worktitle} />
       <ContactPill Icon={MdEmail} details={user.contact.email} />

@@ -41,6 +41,16 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Exo:wght@100;300;400;700;900&display=swap"
+            rel="stylesheet"
+          />
           <link rel="manifest" href="/site.webmanifest" />
         </Head>
         <body>
