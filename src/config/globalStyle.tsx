@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   body {
     font-family: 'Exo', sans-serif;
     margin: 0;
-    padding: 2em;
-    height: 90vh;
+    padding: 0;
+    height: 100vh;
     background-color: ${(props) =>
       props.theme.colorScheme === 'light'
         ? props.theme.colors.white

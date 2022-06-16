@@ -6,6 +6,7 @@ import UserData from '../data/user'
 import IUser from '../types/user'
 import Layout from '../layout'
 import ProjectData from '../data/project'
+import theme from '../config/theme'
 
 type userProps = {
   user: IUser
@@ -15,7 +16,13 @@ const Index = ({ user }: userProps) => {
   return (
     <div
       style={{
-        padding: '1rem'
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '0.5rem',
+        margin: '0 0.5rem',
+        width: '100%',
+        backgroundColor: theme.colors.grey,
+        alignItems: 'flex-start'
       }}
     >
       <h1>Hello, Welcome to my portfolio</h1>
