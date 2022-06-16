@@ -11,9 +11,7 @@ interface ProfileImageProps {
 const ProfileImage = ({ src }: ProfileImageProps) => {
   return (
     <StyledProfileImageContainer>
-      <div>
-        <Image src={src} alt="Profile Picture" height="200px" width=" 200px" />
-      </div>
+      <Image src={src} alt="Profile Picture" height="200px" width=" 200px" />
     </StyledProfileImageContainer>
   )
 }

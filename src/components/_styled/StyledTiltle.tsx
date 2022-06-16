@@ -9,7 +9,7 @@ const SyledTitle = styled.p`
   border-radius: 25px;
   overflow: hidden;
   padding: 0.5rem;
-  margin: 0.5rem auto;
+  margin: 1.5rem auto;
 `
 
 export default SyledTitle

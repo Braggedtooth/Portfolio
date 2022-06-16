@@ -9,11 +9,13 @@ const StyledProjectCard = styled.div((props) => ({
   boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
   display: 'flex',
   margin: '10px',
+  flex: '0 1 auto',
   textAlign: 'center',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  alignContent: 'center',
   height: 'auto',
-  width: '20rem',
+  width: '23rem',
   color:
     props.theme.colorScheme === 'light'
       ? props.theme.colors.black
