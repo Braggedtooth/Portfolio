@@ -10,6 +10,16 @@ import IWebhook from '../../types/webhook'
 interface IEvent extends NextApiRequest {
   body: IWebhook
 }
+/**
+ * It checks if the request is a POST request, then checks if the request is coming from GitHub, then
+ * checks if the request is coming from a commit that modified the project.json or user.json files, and
+ * if so, it revalidates the /projects and / pages respectively
+ * @param {IEvent} req - IEvent - this is the request object that is passed to the handler. It is an
+ * object that has the following properties:
+ * @param {NextApiResponse} res - NextApiResponse - this is the response object that we can use to send
+ * a response back to the client.
+ * @returns A function that handles the event.
+ */
 const eventsHandler = async (req: IEvent, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const sigTistring = JSON.stringify(req.headers[GITHUB_HEADER_NAME])
