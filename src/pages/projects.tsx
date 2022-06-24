@@ -3,11 +3,11 @@ import { GetStaticProps } from 'next'
 import { lighten } from 'polished'
 import { REVALIDATE_SECONDS } from '../utils/constants'
 import { IProject } from '../types/projects'
-import ProjectData from '../data/project'
+import getProjectData from '../data/project'
 import ProjectCard from '../components/atoms/ProjectCard'
 import Layout from '../layout'
-import UserData from '../data/user'
 import theme from '../config/theme'
+import getUserData from '../data/user'
 
 type projectProps = {
   projects: IProject[]
@@ -39,8 +39,8 @@ Projects.getLayout = (page: ReactElement, props: projectProps) => (
   <Layout data={props}>{page}</Layout>
 )
 export const getStaticProps: GetStaticProps = async () => {
-  const user = await UserData
-  const projects = await ProjectData
+  const user = await getUserData()
+  const projects = await getProjectData()
   return {
     props: {
       projects,

@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import calculateAge from '../utils/calculateAge'
 import { REVALIDATE_SECONDS } from '../utils/constants'
-import UserData from '../data/user'
+import getUserData from '../data/user'
 import IUser from '../types/user'
 import Layout from '../layout'
-import ProjectData from '../data/project'
+import getProjectData from '../data/project'
 import theme from '../config/theme'
 
 type userProps = {
@@ -40,8 +40,8 @@ Index.getLayout = (page: ReactElement, user: IUser) => (
   <Layout data={user}>{page}</Layout>
 )
 export const getStaticProps: GetStaticProps = async () => {
-  const user = await UserData
-  const projects = await ProjectData
+  const user = await getUserData()
+  const projects = await getProjectData()
   return {
     props: {
       user,
