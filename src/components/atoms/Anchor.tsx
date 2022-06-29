@@ -1,5 +1,5 @@
 import React from 'react'
-import StyledContactPill from '../_styled/StyledContactPill'
+import { Anchor as MantineAnchor } from '@mantine/core'
 
 interface AnchorProps {
   href?: string
@@ -8,10 +8,12 @@ interface AnchorProps {
 }
 const Anchor = ({ href, children, ...rest }: AnchorProps) => {
   return (
-    <StyledContactPill href={href} {...rest}>
+    <MantineAnchor component="a" href={href} {...rest}>
       {children}
-    </StyledContactPill>
+    </MantineAnchor>
   )
 }
+
+
 
 export default Anchor
