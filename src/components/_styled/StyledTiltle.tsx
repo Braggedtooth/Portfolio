@@ -8,8 +8,9 @@ const SyledTitle = styled.p`
   background-color: #333;
   border-radius: 25px;
   overflow: hidden;
-  padding: 0.5rem;
-  margin: 1.5rem auto;
+  margin: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 `
 
 export default SyledTitle
