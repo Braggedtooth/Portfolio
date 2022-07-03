@@ -17,12 +17,17 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <meta name="theme-color" content="#fff" />
+          <meta
+            name="description"
+            content="Bayo.se is a portfolio website for Adebayo Ajayi."
+          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="manifest" href="/manifest.json" />
+
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -47,10 +52,7 @@ class MyDocument extends Document {
             href="https://fonts.gstatic.com"
             crossOrigin="true"
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Exo:wght@100;300;400;700;900&display=swap"
-            rel="stylesheet"
-          />
+          <style data-href="https://fonts.googleapis.com/css2?family=Exo:wght@100;300;400;700;900&display=swap" />
           <link rel="manifest" href="/site.webmanifest" />
         </Head>
         <body>
