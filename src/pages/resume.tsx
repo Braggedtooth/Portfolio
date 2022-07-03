@@ -1,7 +1,6 @@
 import { Box } from '@mantine/core'
 import React, { ReactElement } from 'react'
 import Layout from '../layout'
-import IUser from '../types/user'
 
 const Resume = () => {
   return (
@@ -21,8 +20,6 @@ const Resume = () => {
 }
 
 export default Resume
-Resume.getLayout = (page: ReactElement, user: IUser) => (
-  <Layout data={user} title="Resume">
-    {page}
-  </Layout>
+Resume.getLayout = (page: ReactElement) => (
+  <Layout title="Resume">{page}</Layout>
 )
