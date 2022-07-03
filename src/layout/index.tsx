@@ -142,7 +142,7 @@ const Index = ({ data, title, children }: layoutProps) => {
                 onClick={() => setOpened((o) => !o)}
                 size="md"
                 color={theme.colors.gray[6]}
-                mr="xl"
+                p="lg"
                 aria-label="menu"
               />
             </MediaQuery>
