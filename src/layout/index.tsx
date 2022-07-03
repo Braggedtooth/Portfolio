@@ -143,6 +143,7 @@ const Index = ({ data, title, children }: layoutProps) => {
                 size="md"
                 color={theme.colors.gray[6]}
                 mr="xl"
+                aria-label="menu"
               />
             </MediaQuery>
           }

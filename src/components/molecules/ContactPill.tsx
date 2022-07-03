@@ -13,7 +13,11 @@ interface ContactPillProps {
 type ContactPillAnchorProps = {} & Omit<ContactPillProps, 'Icon'>
 
 const I = ({ details }) => {
-  return <Text size="md">{details}</Text>
+  return (
+    <Text size="md" align="center" style={{ flex: 1 }}>
+      {details}
+    </Text>
+  )
 }
 const ContactType = ({ details, as }: ContactPillAnchorProps) => {
   switch (as) {
@@ -40,11 +44,7 @@ const ContactType = ({ details, as }: ContactPillAnchorProps) => {
         </Anchor>
       )
     case 'birthday':
-      return (
-        <Anchor>
-          <I details={details} />
-        </Anchor>
-      )
+      return <I details={details} />
     default:
       return <I details={details} />
   }
