@@ -166,8 +166,8 @@ const Index = ({ user }: userProps) => {
 }
 
 export default Index
-Index.getLayout = (page: ReactElement, user: IUser) => (
-  <Layout data={user} title="Home">
+Index.getLayout = (page: ReactElement) => (
+  <Layout title="Home">
     {page}
   </Layout>
 )
