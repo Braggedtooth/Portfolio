@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Carelyo Usa",
-  "short_name": "carelyousa",
+  "name": "Bayo.se",
+  "short_name": "bayo.se",
   "icons": [
     {
       "src": "/icon-192.png",

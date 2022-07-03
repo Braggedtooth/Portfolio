@@ -1,6 +1,6 @@
 import Technologies from './technologies'
 
-export interface IProject {
+export default interface IProject {
   id: number
   name: string
   description: string

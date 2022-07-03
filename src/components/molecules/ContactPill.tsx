@@ -1,9 +1,6 @@
 import { Divider, Group, MantineColor, Text, ThemeIcon } from '@mantine/core'
-
-import { darken } from 'polished'
 import React from 'react'
 import { IconType } from 'react-icons'
-import calculateAge from '../../utils/calculateAge'
 import Anchor from '../atoms/Anchor'
 
 interface ContactPillProps {
@@ -14,27 +11,22 @@ interface ContactPillProps {
   as?: 'phone' | 'email' | 'location' | 'birthday'
 }
 type ContactPillAnchorProps = {} & Omit<ContactPillProps, 'Icon'>
-const I = ({ details, as }) => {
-  return (
-    <Text size="md">
-      {as === 'birthday'
-        ? `${calculateAge(new Date(details))} years old`
-        : details}
-    </Text>
-  )
+
+const I = ({ details }) => {
+  return <Text size="md">{details}</Text>
 }
 const ContactType = ({ details, as }: ContactPillAnchorProps) => {
   switch (as) {
     case 'phone':
       return (
         <Anchor href={`tel:${details}`}>
-          <I details={details} as={as} />
+          <I details={details} />
         </Anchor>
       )
     case 'email':
       return (
         <Anchor href={`mailto:${details}`}>
-          <I details={details} as={as} />
+          <I details={details} />
         </Anchor>
       )
     case 'location':
@@ -44,17 +36,17 @@ const ContactType = ({ details, as }: ContactPillAnchorProps) => {
           target="_blank"
           rel="noreferrer"
         >
-          <I details={details} as={as} />
+          <I details={details} />
         </Anchor>
       )
     case 'birthday':
       return (
         <Anchor>
-          <I details={details} as={as} />
+          <I details={details} />
         </Anchor>
       )
     default:
-      return <I details={details} as={as} />
+      return <I details={details} />
   }
 }
 const ContactPill = ({
@@ -64,9 +56,6 @@ const ContactPill = ({
   iconColor,
   textColor
 }: ContactPillProps) => {
-  /*   const Mytheme = useMantineTheme() */
-  /*   const media = useMediaQuery(`(min-width:${Mytheme.breakpoints.md}px)`) */
-
   return (
     <Group
       sx={(theme) => ({
@@ -78,29 +67,34 @@ const ContactPill = ({
         boxShadow: theme.shadows[3],
         fontSize: theme.fontSizes.md,
         justifyContent: 'space-between',
-        textAlign: 'start',
         alignItems: 'center',
-        padding: theme.spacing.sm,
+        padding: theme.spacing.lg,
         textDecoration: 'none',
         marginTop: theme.spacing.sm,
         borderRadius: theme.radius.sm,
         a: {
           color: textColor || theme.colors.dark[0],
           textDecoration: 'none',
+          textAlign: 'center',
+          fontSize: theme.fontSizes.lg,
           flex: '1',
           '&:hover': {
             textDecoration: 'none',
-            color: darken(0.1, textColor || theme.colors.dark[0])
+            color: theme.colors.dark[1]
           }
         },
         '&:hover': {
           transform: 'scale(1.009)',
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[6]
+              : theme.colors.gray[0],
           cursor: 'pointer'
         }
       })}
     >
       <Group>
-        <ThemeIcon color={iconColor} variant="light">
+        <ThemeIcon color={iconColor} variant="light" size="xl">
           <Icon size={20} />
         </ThemeIcon>
         <Divider sx={{ height: 'auto' }} size="md" orientation="vertical" />
