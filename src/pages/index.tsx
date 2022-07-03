@@ -67,7 +67,7 @@ const Index = ({ user }: userProps) => {
           >
             <Group
               position={!media ? 'apart' : 'center'}
-              mb={theme.spacing.lg}
+              my={theme.spacing.lg}
               sx={{ flexDirection: !media ? 'column' : 'row-reverse' }}
             >
               <Stack
