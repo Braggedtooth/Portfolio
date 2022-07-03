@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 import { NextPage } from 'next'
-import React, { ReactElement, } from 'react'
-import '../../public/nprogress.css'
+import React, { ReactElement } from 'react'
 import { MantineProvider } from '@mantine/core'
 
 type NextPageWithLayout = NextPage & {

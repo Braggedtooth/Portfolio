@@ -2,7 +2,7 @@
     "extends": ["airbnb", "next/core-web-vitals", "prettier"],
     "plugins": ["react", "prettier"],
     "rules": {
-      "no-console": 0,
+      "no-console": 1,
       "arrow-body-style": "off",
       "import/extensions": "off",
       "react/jsx-props-no-spreading": "off",
@@ -14,7 +14,7 @@
           "extensions": [".tsx", ".ts", ".jsx", ".js"]
         }
       ],
-     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
     }
   }
   

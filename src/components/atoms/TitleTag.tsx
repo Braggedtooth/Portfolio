@@ -1,8 +1,22 @@
+import { Badge } from '@mantine/core'
 import React from 'react'
-import SyledTitle from '../_styled/StyledTiltle'
 
 const TitleTag = ({ title }) => {
-  return <SyledTitle> {title}</SyledTitle>
+  return (
+    <Badge
+      sx={{
+        color: '#fff',
+        backgroundColor: '#333',
+        borderRadius: '25px',
+        overflow: 'hidden',
+        margin: '0',
+        paddingTop: '1rem',
+        paddingBottom: '1rem'
+      }}
+    >
+      {title}
+    </Badge>
+  )
 }
 
 export default TitleTag
