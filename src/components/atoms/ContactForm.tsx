@@ -1,4 +1,4 @@
-import { Button, Textarea, TextInput } from '@mantine/core'
+import { Button, Center, Textarea, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import React from 'react'
 import encodeJson from '../../utils/encodeJson'
@@ -50,57 +50,65 @@ export default function ContactForm({ sucess, setSubmitted }: FormProps) {
   }, [form.values.message])
 
   return (
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      onSubmit={form.onSubmit(onSubmit)}
-    >
-      <div hidden>
-        <TextInput
-          hidden
-          name="bot-field"
-          label="Do not fill this out if you are human:"
-        />
-      </div>
-      <TextInput
-        name="name"
-        id="name"
-        label="Name"
-        placeholder="Your name"
-        required
-        {...form.getInputProps('name')}
-        error={form.errors.name}
-      />
-
-      <TextInput
-        name="email"
-        id="email"
-        label="Email"
-        placeholder="Your email"
-        type="email"
-        required
-        error={form.errors.email}
-        {...form.getInputProps('email')}
-      />
-      <Textarea
-        required
-        label={`Message - (${charCount}/200)`}
-        placeholder="Your message"
-        minRows={4}
-        maxLength={200}
-        error={form.errors.message}
-        {...form.getInputProps('message')}
-      />
-      <Button
-        type="submit"
-        aria-label="submit form"
-        disabled={!!sucess}
-        loading={loading}
+    <Center sx={{ width: '100%' }} p="xs">
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        onSubmit={form.onSubmit(onSubmit)}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%'
+        }}
       >
-        {!sucess ? 'Submit' : 'Submitted'}
-      </Button>
-    </form>
+        <div hidden>
+          <TextInput
+            hidden
+            name="bot-field"
+            label="Do not fill this out if you are human:"
+          />
+        </div>
+        <TextInput
+          name="name"
+          id="name"
+          label="Name"
+          placeholder="Your name"
+          required
+          {...form.getInputProps('name')}
+          error={form.errors.name}
+        />
+
+        <TextInput
+          name="email"
+          id="email"
+          label="Email"
+          placeholder="Your email"
+          type="email"
+          required
+          error={form.errors.email}
+          {...form.getInputProps('email')}
+        />
+        <Textarea
+          required
+          label={`Message - (${charCount}/200)`}
+          placeholder="Your message"
+          minRows={4}
+          maxLength={200}
+          error={form.errors.message}
+          {...form.getInputProps('message')}
+        />
+        <Button
+          type="submit"
+          aria-label="submit form"
+          disabled={!!sucess}
+          my="md"
+          loading={loading}
+        >
+          {!sucess ? 'Submit' : 'Submitted'}
+        </Button>
+      </form>
+    </Center>
   )
 }

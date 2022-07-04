@@ -24,11 +24,14 @@ const Contact = () => {
         alignItems: 'flex-start'
       })}
     >
-      <Title>Contact Me</Title>
+      <Title p="xs">Say Hello👋</Title>
       {status === 'success' && (
-        <Text> Summision Recieved,i Will be in touch</Text>
+        <Text align="center" color="green" p="xs">
+          {' '}
+          Summision recieved, i will be in touch
+        </Text>
       )}
-      {status === 'error' && <Text> Summision Failed,try again later...</Text>}
+      {status === 'error' && <Text> Summision failed,try again later...</Text>}
       <ContactForm setSubmitted={setStatus} sucess={success} />
     </Box>
   )
