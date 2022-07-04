@@ -17,7 +17,7 @@ const Resume = () => {
       })}
     >
       <iframe
-        src={resume}
+        src={`${resume}`}
         title="Resume"
         height="100%"
         width="100%"
