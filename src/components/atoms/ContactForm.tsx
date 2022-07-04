@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Button, Textarea, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import React from 'react'
@@ -9,10 +8,13 @@ interface FormPost {
   email: string
   message: string
 }
-
-export default function ContactForm({ setSubmitted }) {
+interface FormProps {
+  sucess: boolean
+  setSubmitted: React.Dispatch<React.SetStateAction<'success' | 'error'>>
+}
+export default function ContactForm({ sucess, setSubmitted }: FormProps) {
   const [charCount, setCharCount] = React.useState(0)
-
+  const [loading, setLoading] = React.useState(false)
   const form = useForm({
     initialValues: {
       name: '',
@@ -27,16 +29,19 @@ export default function ContactForm({ setSubmitted }) {
     if (data.message.length < 20) {
       return form.setFieldError('message', 'Message is too short')
     }
+    setLoading(true)
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encodeJson({ 'form-name': 'contact', ...data })
     })
-      .then(() => console.log('Success!'))
-      .catch((err) => console.log(err))
-
-    setSubmitted(true)
-    console.log(data)
+      .then(() => setSubmitted('success'))
+      .catch((err) => {
+        setSubmitted('error')
+        // eslint-disable-next-line no-console
+        console.error(err)
+      })
+    setLoading(false)
     return form.reset()
   }
 
@@ -49,8 +54,16 @@ export default function ContactForm({ setSubmitted }) {
       name="contact"
       method="POST"
       data-netlify="true"
+      netlify-honeypot="bot-field"
       onSubmit={form.onSubmit(onSubmit)}
     >
+      <div hidden>
+        <TextInput
+          hidden
+          name="bot-field"
+          label="Do not fill this out if you are human:"
+        />
+      </div>
       <TextInput
         name="name"
         id="name"
@@ -80,8 +93,13 @@ export default function ContactForm({ setSubmitted }) {
         error={form.errors.message}
         {...form.getInputProps('message')}
       />
-      <Button type="submit" aria-label="submit form" title="Submit">
-        Submit
+      <Button
+        type="submit"
+        aria-label="submit form"
+        disabled={!!sucess}
+        loading={loading}
+      >
+        {!sucess ? 'Submit' : 'Submitted'}
       </Button>
     </form>
   )

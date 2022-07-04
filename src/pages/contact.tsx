@@ -4,7 +4,13 @@ import ContactForm from '../components/atoms/ContactForm'
 import Layout from '../layout'
 
 const Contact = () => {
-  const [success, setSuccess] = React.useState(false)
+  const [status, setStatus] = React.useState<'success' | 'error'>()
+  const [success, setSuccess] = React.useState<boolean>(false)
+  React.useEffect(() => {
+    if (status === 'success') {
+      setSuccess(true)
+    }
+  }, [status])
 
   return (
     <Box
@@ -19,8 +25,11 @@ const Contact = () => {
       })}
     >
       <Title>Contact Me</Title>
-      {success && <Text> Summision Recieved,i Will be in touch</Text>}
-      <ContactForm setSubmitted={setSuccess} />
+      {status === 'success' && (
+        <Text> Summision Recieved,i Will be in touch</Text>
+      )}
+      {status === 'error' && <Text> Summision Failed,try again later...</Text>}
+      <ContactForm setSubmitted={setStatus} sucess={success} />
     </Box>
   )
 }
