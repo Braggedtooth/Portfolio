@@ -6,22 +6,31 @@ import {
   MantineColor
 } from '@mantine/core'
 import Link from 'next/link'
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface MainLinkProps {
-  icon: React.ReactNode
+  icon: ReactNode
   link: string
   color: MantineColor
   label: string
+  target?: string
   close: () => void
 }
 
-function MainLink({ icon, color, label, link , close}: MainLinkProps) {
+const MainLink = ({
+  icon,
+  color,
+  label,
+  link,
+  close,
+  target
+}: MainLinkProps) => {
   return (
     <Link passHref href={link}>
       <UnstyledButton
         component="a"
         href={link}
+        target={target}
         sx={(theme) => ({
           display: 'block',
           width: '100%',

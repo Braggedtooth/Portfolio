@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 import { Box, Card } from '@mantine/core'
 import IProject from '../../types/projects'
