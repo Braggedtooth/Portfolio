@@ -5,7 +5,6 @@ import {
   Text,
   MediaQuery,
   Navbar,
-  useMantineTheme,
   Box,
   Loader,
   Center
@@ -23,11 +22,12 @@ interface layoutProps {
 
 const Index = ({ title, children }: layoutProps) => {
   const router = useRouter()
-  const theme = useMantineTheme()
   const [opened, setOpened] = React.useState(false)
+  const [isMouted, setisMouted] = React.useState(false)
   const [routesLoading, setRoutesLoading] = React.useState(false)
 
   React.useEffect(() => {
+    setisMouted(true)
     const handleStart = (url: string) => {
       console.log(`Loading: ${url}`)
       setRoutesLoading(true)
@@ -53,90 +53,92 @@ const Index = ({ title, children }: layoutProps) => {
         <title>{`Bayo.se - ${title}`}</title>
       </Head>
 
-      <AppShell
-        styles={{
-          main: {
-            background:
-              theme.colorScheme === 'dark'
-                ? theme.colors.dark[4]
-                : theme.colors.gray[0]
+      {isMouted && (
+        <AppShell
+          styles={(theme) => ({
+            main: {
+              background:
+                theme.colorScheme === 'dark'
+                  ? theme.colors.dark[4]
+                  : theme.colors.gray[0]
+            }
+          })}
+          navbarOffsetBreakpoint="sm"
+          asideOffsetBreakpoint="sm"
+          fixed
+          navbar={
+            <Navbar
+              p="md"
+              hiddenBreakpoint="sm"
+              hidden={!opened}
+              width={{ sm: 200, lg: 300 }}
+            >
+              <Navbar.Section grow mt="md">
+                <MainLink
+                  icon={<MdHome size={20} />}
+                  color="teal"
+                  label="Home"
+                  link="/"
+                  close={() => setOpened(false)}
+                />
+                <MainLink
+                  icon={<MdFolder size={20} />}
+                  color="indigo"
+                  label="Projects"
+                  link="/projects"
+                  close={() => setOpened(false)}
+                />
+                <MainLink
+                  icon={<MdContactPage size={20} />}
+                  color="grape"
+                  label="Contact"
+                  link="/contact"
+                  close={() => setOpened(false)}
+                />
+                <MainLink
+                  icon={<MdDownload size={20} />}
+                  color="orange"
+                  label="Resume"
+                  link="/resume"
+                  close={() => setOpened(false)}
+                />
+              </Navbar.Section>
+              <Navbar.Section>
+                <Box
+                  sx={(theme) => ({
+                    paddingTop: theme.spacing.sm,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    borderTop: `1px solid ${
+                      theme.colorScheme === 'dark'
+                        ? theme.colors.dark[4]
+                        : theme.colors.gray[2]
+                    }`
+                  })}
+                >
+                  <Text size="sm" color="dimmed">
+                    © 2022 bayo.se
+                  </Text>
+                </Box>
+              </Navbar.Section>
+            </Navbar>
           }
-        }}
-        navbarOffsetBreakpoint="sm"
-        asideOffsetBreakpoint="sm"
-        fixed
-        navbar={
-          <Navbar
-            p="md"
-            hiddenBreakpoint="sm"
-            hidden={!opened}
-            width={{ sm: 200, lg: 300 }}
-          >
-            <Navbar.Section grow mt="md">
-              <MainLink
-                icon={<MdHome size={20} />}
-                color="teal"
-                label="Home"
-                link="/"
-                close={() => setOpened(false)}
+          header={
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                size="md"
+                color="gray"
+                p="lg"
+                aria-label="menu"
               />
-              <MainLink
-                icon={<MdFolder size={20} />}
-                color="indigo"
-                label="Projects"
-                link="/projects"
-                close={() => setOpened(false)}
-              />
-              <MainLink
-                icon={<MdContactPage size={20} />}
-                color="grape"
-                label="Contact"
-                link="/contact"
-                close={() => setOpened(false)}
-              />
-              <MainLink
-                icon={<MdDownload size={20} />}
-                color="orange"
-                label="Resume"
-                link="/resume"
-                close={() => setOpened(false)}
-              />
-            </Navbar.Section>
-            <Navbar.Section>
-              <Box
-                sx={{
-                  paddingTop: theme.spacing.sm,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  borderTop: `1px solid ${
-                    theme.colorScheme === 'dark'
-                      ? theme.colors.dark[4]
-                      : theme.colors.gray[2]
-                  }`
-                }}
-              >
-                <Text size="sm" color="dimmed">
-                  © 2022 bayo.se
-                </Text>
-              </Box>
-            </Navbar.Section>
-          </Navbar>
-        }
-        header={
-          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Burger
-              opened={opened}
-              onClick={() => setOpened((o) => !o)}
-              size="md"
-              color={theme.colors.gray[6]}
-              p="lg"
-              aria-label="menu"
-            />
-          </MediaQuery>
-        }
-      >
-        <Center mb="xl">{routesLoading ? <Loader /> : children}</Center>
-      </AppShell>
+            </MediaQuery>
+          }
+        >
+          <Center mb="xl">{routesLoading ? <Loader /> : children}</Center>
+        </AppShell>
+      )}
     </>
   )
 }
