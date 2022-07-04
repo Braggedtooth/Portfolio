@@ -30,7 +30,7 @@ export default function ContactForm({ sucess, setSubmitted }: FormProps) {
       return form.setFieldError('message', 'Message is too short')
     }
     setLoading(true)
-    fetch('/', {
+    fetch('/api/form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encodeJson({ 'form-name': 'contact', ...data })
