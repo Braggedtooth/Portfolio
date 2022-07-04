@@ -13,15 +13,24 @@ interface MainLinkProps {
   link: string
   color: MantineColor
   label: string
+  target?: string
   close: () => void
 }
 
-function MainLink({ icon, color, label, link , close}: MainLinkProps) {
+const MainLink = ({
+  icon,
+  color,
+  label,
+  link,
+  close,
+  target
+}: MainLinkProps) => {
   return (
     <Link passHref href={link}>
       <UnstyledButton
         component="a"
         href={link}
+        target={target}
         sx={(theme) => ({
           display: 'block',
           width: '100%',
