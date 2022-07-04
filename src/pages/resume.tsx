@@ -1,5 +1,5 @@
 import { Anchor, Box } from '@mantine/core'
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { MdTab } from 'react-icons/md'
 import Layout from '../layout'
 

@@ -12,10 +12,9 @@ import {
 } from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { MdContactPage, MdDownload, MdFolder, MdHome } from 'react-icons/md'
 import MainLink from '../components/molecules/MainLink'
-
 
 interface layoutProps {
   title: string
@@ -25,10 +24,10 @@ interface layoutProps {
 const Index = ({ title, children }: layoutProps) => {
   const router = useRouter()
   const theme = useMantineTheme()
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = React.useState(false)
   const [routesLoading, setRoutesLoading] = React.useState(false)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleStart = (url: string) => {
       console.log(`Loading: ${url}`)
       setRoutesLoading(true)

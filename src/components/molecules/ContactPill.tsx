@@ -1,5 +1,4 @@
 import { Divider, Group, MantineColor, Text, ThemeIcon } from '@mantine/core'
-import React from 'react'
 import { IconType } from 'react-icons'
 import Anchor from '../atoms/Anchor'
 

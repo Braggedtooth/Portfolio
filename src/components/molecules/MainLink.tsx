@@ -6,10 +6,10 @@ import {
   MantineColor
 } from '@mantine/core'
 import Link from 'next/link'
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface MainLinkProps {
-  icon: React.ReactNode
+  icon: ReactNode
   link: string
   color: MantineColor
   label: string

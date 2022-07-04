@@ -1,5 +1,5 @@
 import { Box } from '@mantine/core'
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import Layout from '../layout'
 
 
