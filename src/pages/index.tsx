@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React from 'react'
 import { GetStaticProps } from 'next'
 import {
   Center,
@@ -41,7 +41,7 @@ const Index = ({ user }: userProps) => {
   const media = useMediaQuery(`(min-width:${theme.breakpoints.md}px)`)
   const [isMounted, setIsMounted] = React.useState(false)
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsMounted(true)
   }, [])
 
@@ -67,7 +67,7 @@ const Index = ({ user }: userProps) => {
           >
             <Group
               position={!media ? 'apart' : 'center'}
-              mb={theme.spacing.lg}
+              my={theme.spacing.lg}
               sx={{ flexDirection: !media ? 'column' : 'row-reverse' }}
             >
               <Stack
@@ -166,10 +166,8 @@ const Index = ({ user }: userProps) => {
 }
 
 export default Index
-Index.getLayout = (page: ReactElement, user: IUser) => (
-  <Layout data={user} title="Home">
-    {page}
-  </Layout>
+Index.getLayout = (page: React.ReactElement) => (
+  <Layout title="Home">{page}</Layout>
 )
 export const getStaticProps: GetStaticProps = async () => {
   const user = await getUserData()

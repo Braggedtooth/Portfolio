@@ -1,9 +1,9 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { Anchor as MantineAnchor } from '@mantine/core'
 
 interface AnchorProps {
   href?: string
-  children: React.ReactNode
+  children: ReactNode
   [x: string]: any
 }
 const Anchor = ({ href, children, ...rest }: AnchorProps) => {
@@ -13,7 +13,5 @@ const Anchor = ({ href, children, ...rest }: AnchorProps) => {
     </MantineAnchor>
   )
 }
-
-
 
 export default Anchor

@@ -5,41 +5,29 @@ import {
   Text,
   MediaQuery,
   Navbar,
-  useMantineTheme,
   Box,
   Loader,
   Center
 } from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { MdContactPage, MdDownload, MdFolder, MdHome } from 'react-icons/md'
 import MainLink from '../components/molecules/MainLink'
-import getUserData from '../data/user'
 
 interface layoutProps {
-  data: any
   title: string
   children?: React.ReactNode
 }
 
-const Index = ({ data, title, children }: layoutProps) => {
+const Index = ({ title, children }: layoutProps) => {
   const router = useRouter()
-  const theme = useMantineTheme()
-  const [opened, setOpened] = useState(false)
-  const [user, setUser] = React.useState(data.user)
+  const [opened, setOpened] = React.useState(false)
+  const [isMouted, setisMouted] = React.useState(false)
   const [routesLoading, setRoutesLoading] = React.useState(false)
 
-  // Fetch  data on mount if not passed from data prop
-  useEffect(() => {
-    if (!data.user) {
-      getUserData().then((res) => {
-        setUser(res)
-      })
-    }
-  }, [data])
-
-  useEffect(() => {
+  React.useEffect(() => {
+    setisMouted(true)
     const handleStart = (url: string) => {
       console.log(`Loading: ${url}`)
       setRoutesLoading(true)
@@ -60,21 +48,21 @@ const Index = ({ data, title, children }: layoutProps) => {
   }, [router])
 
   return (
-    user && (
-      <>
-        <Head>
-          <title>{`Bayo.se - ${title}`}</title>
-        </Head>
+    <>
+      <Head>
+        <title>{`Bayo.se - ${title}`}</title>
+      </Head>
 
+      {isMouted && (
         <AppShell
-          styles={{
+          styles={(theme) => ({
             main: {
               background:
                 theme.colorScheme === 'dark'
                   ? theme.colors.dark[4]
                   : theme.colors.gray[0]
             }
-          }}
+          })}
           navbarOffsetBreakpoint="sm"
           asideOffsetBreakpoint="sm"
           fixed
@@ -117,7 +105,7 @@ const Index = ({ data, title, children }: layoutProps) => {
               </Navbar.Section>
               <Navbar.Section>
                 <Box
-                  sx={{
+                  sx={(theme) => ({
                     paddingTop: theme.spacing.sm,
                     display: 'flex',
                     justifyContent: 'center',
@@ -126,7 +114,7 @@ const Index = ({ data, title, children }: layoutProps) => {
                         ? theme.colors.dark[4]
                         : theme.colors.gray[2]
                     }`
-                  }}
+                  })}
                 >
                   <Text size="sm" color="dimmed">
                     © 2022 bayo.se
@@ -141,16 +129,17 @@ const Index = ({ data, title, children }: layoutProps) => {
                 opened={opened}
                 onClick={() => setOpened((o) => !o)}
                 size="md"
-                color={theme.colors.gray[6]}
-                mr="xl"
+                color="gray"
+                p="lg"
+                aria-label="menu"
               />
             </MediaQuery>
           }
         >
           <Center mb="xl">{routesLoading ? <Loader /> : children}</Center>
         </AppShell>
-      </>
-    )
+      )}
+    </>
   )
 }
 

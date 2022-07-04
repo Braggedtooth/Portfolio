@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import { Box, MediaQuery } from '@mantine/core'
 import { REVALIDATE_SECONDS } from '../utils/constants'
@@ -46,10 +46,8 @@ const Projects = ({ projects }: projectProps) => {
 }
 
 export default Projects
-Projects.getLayout = (page: ReactElement, props: projectProps) => (
-  <Layout data={props} title="Projects">
-    {page}
-  </Layout>
+Projects.getLayout = (page: ReactElement) => (
+  <Layout title="Projects">{page}</Layout>
 )
 export const getStaticProps: GetStaticProps = async () => {
   const user = await getUserData()
