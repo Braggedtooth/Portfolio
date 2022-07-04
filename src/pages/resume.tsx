@@ -4,6 +4,7 @@ import { MdTab } from 'react-icons/md'
 import Layout from '../layout'
 
 const Resume = () => {
+  const resume = 'resume_adebayo_ajayi.pdf'
   return (
     <Box
       sx={(theme) => ({
@@ -16,13 +17,18 @@ const Resume = () => {
       })}
     >
       <iframe
-        src="/resume.pdf"
+        src={resume}
         title="Resume"
         height="100%"
         width="100%"
         style={{ border: 'none' }}
       />
-      <Anchor color="orange" href="resume.pdf" target="_blank">
+      <Anchor
+        color="orange"
+        href={resume}
+        target="_blank"
+        aria-label="open resume in new tab"
+      >
         Open in new tab <MdTab size={15} />
       </Anchor>
     </Box>
