@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import { Box, MediaQuery } from '@mantine/core'
 import { REVALIDATE_SECONDS } from '../utils/constants'
