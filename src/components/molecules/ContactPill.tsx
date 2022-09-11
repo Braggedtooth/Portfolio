@@ -1,4 +1,4 @@
-import { Divider, Group, MantineColor, Text, ThemeIcon } from '@mantine/core'
+import { Group, MantineColor, Text, ThemeIcon } from '@mantine/core'
 import { IconType } from 'react-icons'
 import Anchor from '../atoms/Anchor'
 
@@ -23,13 +23,13 @@ const ContactType = ({ details, as }: ContactPillAnchorProps) => {
     case 'phone':
       return (
         <Anchor href={`tel:${details}`}>
-          <I details={details} />
+          <I details="Call" />
         </Anchor>
       )
     case 'email':
       return (
         <Anchor href={`mailto:${details}`}>
-          <I details={details} />
+          <I details="Email" />
         </Anchor>
       )
     case 'location':
@@ -58,19 +58,17 @@ const ContactPill = ({
   return (
     <Group
       sx={(theme) => ({
-        width: '100%',
-        height: '100%',
         display: 'flex',
         backgroundColor: theme.colors.gray,
         color: textColor || theme.colors.dark[0],
         boxShadow: theme.shadows[3],
-        fontSize: theme.fontSizes.md,
+        fontSize: theme.fontSizes.sm,
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: theme.spacing.lg,
+        padding: theme.spacing.sm,
         textDecoration: 'none',
         marginTop: theme.spacing.sm,
-        borderRadius: theme.radius.sm,
+        borderRadius: theme.radius.md,
         a: {
           color: textColor || theme.colors.dark[0],
           textDecoration: 'none',
@@ -93,10 +91,9 @@ const ContactPill = ({
       })}
     >
       <Group>
-        <ThemeIcon color={iconColor} variant="light" size="xl">
-          <Icon size={20} />
+        <ThemeIcon color={iconColor} variant="light" size="lg" radius={50}>
+          <Icon size={15} />
         </ThemeIcon>
-        <Divider sx={{ height: 'auto' }} size="md" orientation="vertical" />
       </Group>
       <ContactType details={details} as={as} />
     </Group>

@@ -1,4 +1,4 @@
-import { Anchor, Box } from '@mantine/core'
+import { Anchor } from '@mantine/core'
 import { ReactElement } from 'react'
 import { MdTab } from 'react-icons/md'
 import Layout from '../layout'
@@ -6,20 +6,11 @@ import Layout from '../layout'
 const Resume = () => {
   const resume = 'resume_adebayo_ajayi.pdf'
   return (
-    <Box
-      sx={(theme) => ({
-        padding: '0.5rem',
-        margin: '0 0.5rem',
-        height: '90vh',
-        width: '100%',
-        backgroundColor: theme.colors.grey,
-        alignItems: 'flex-start'
-      })}
-    >
+    <div style={{ height: '100%' }}>
       <iframe
         src={`${resume}`}
         title="Resume"
-        height="100%"
+        height="90%"
         width="100%"
         style={{ border: 'none' }}
       />
@@ -31,7 +22,7 @@ const Resume = () => {
       >
         Open in new tab <MdTab size={15} />
       </Anchor>
-    </Box>
+    </div>
   )
 }
 
