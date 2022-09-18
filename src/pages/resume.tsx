@@ -6,11 +6,11 @@ import Layout from '../layout'
 const Resume = () => {
   const resume = 'resume_adebayo_ajayi.pdf'
   return (
-    <div style={{ height: '100%' }}>
+    <div style={{ height: '45vh' }}>
       <iframe
         src={`${resume}`}
         title="Resume"
-        height="90%"
+        height="95%"
         width="100%"
         style={{ border: 'none' }}
       />

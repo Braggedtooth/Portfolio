@@ -1,5 +1,15 @@
 /* eslint-disable no-console */
-import { Box, Center, Navbar, Paper, ScrollArea, Text } from '@mantine/core'
+import {
+  Box,
+  Burger,
+  Center,
+  Container,
+  MediaQuery,
+  Navbar,
+  Paper,
+  ScrollArea,
+  Text
+} from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -49,132 +59,43 @@ const Index = ({ title, children }: layoutProps) => {
           height: '100vh'
         }}
       >
-        <Box
-          sx={{
+        <Container
+          size="lg"
+          sx={() => ({
             display: 'flex',
-            height: '50vh',
-            width: '60%'
-          }}
+            height: '80vh',
+            width: '100%'
+          })}
         >
-          {/* {isMouted && (
-          <AppShell
-          styles={(theme) => ({
-              main: {
-                background:
-                  theme.colorScheme === 'dark'
-                    ? theme.colors.dark[4]
-                    : theme.colors.gray[0]
-              }
-            })}
-            navbarOffsetBreakpoint="sm"
-            asideOffsetBreakpoint="sm"
-            fixed
-            navbar={
-              <Navbar
-                p="md"
-                hiddenBreakpoint="sm"
-                hidden={!opened}
-                width={{ sm: 200, lg: 300 }}
-              >
-                <Navbar.Section grow mt="md">
-                  <MainLink
-                    icon={<MdHome size={20} />}
-                    color="teal"
-                    label="Home"
-                    link="/"
-                    close={() => setOpened(false)}
-                  />
-                  <MainLink
-                    icon={<MdFolder size={20} />}
-                    color="indigo"
-                    label="Projects"
-                    link="/projects"
-                    close={() => setOpened(false)}
-                  />
-                  <MainLink
-                    icon={<MdContactPage size={20} />}
-                    color="grape"
-                    label="Contact"
-                    link="/contact"
-                    close={() => setOpened(false)}
-                    />
-                  <MainLink
-                    icon={<MdDownload size={20} />}
-                    color="orange"
-                    label="Resume"
-                    link="/resume"
-                    close={() => setOpened(false)}
-                  />
-                  </Navbar.Section>
-                  <Navbar.Section>
-                  <Box
-                    sx={(theme) => ({
-                      paddingTop: theme.spacing.sm,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      borderTop: `1px solid ${
-                        theme.colorScheme === 'dark'
-                          ? theme.colors.dark[4]
-                          : theme.colors.gray[2]
-                      }`
-                    })}
-                  >
-                    <Text size="sm" color="dimmed">
-                      © 2022 bayo.se
-                    </Text>
-                  </Box>
-                </Navbar.Section>
-              </Navbar>
-            }
-            header={
-              <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                <Burger
-                  opened={opened}
-                  onClick={() => setOpened((o) => !o)}
-                  size="md"
-                  color="gray"
-                  p="lg"
-                  aria-label="menu"
-                />
-              </MediaQuery>
-            }
-          >
-            <Center mb="xl">{routesLoading ? <Loader /> : children}</Center>
-          </AppShell>
-        )} */}
           <Paper withBorder>
             <Navbar
               p="md"
               hiddenBreakpoint="sm"
               hidden={!opened}
-              height="auto"
+              height="100%"
               width={{ sm: 200, lg: 300 }}
             >
               <Navbar.Section grow mt="md">
                 <MainLink
-                  icon={<MdHome size={20} />}
-                  color="teal"
+                  icon={<MdHome />}
                   label="Home"
                   link="/"
                   close={() => setOpened(false)}
                 />
                 <MainLink
-                  icon={<MdFolder size={20} />}
-                  color="indigo"
+                  icon={<MdFolder />}
                   label="Projects"
                   link="/projects"
                   close={() => setOpened(false)}
                 />
                 <MainLink
-                  icon={<MdContactPage size={20} />}
-                  color="grape"
+                  icon={<MdContactPage />}
                   label="Contact"
                   link="/contact"
                   close={() => setOpened(false)}
                 />
                 <MainLink
-                  icon={<MdDownload size={20} />}
-                  color="orange"
+                  icon={<MdDownload />}
                   label="Resume"
                   link="/resume"
                   close={() => setOpened(false)}
@@ -185,12 +106,7 @@ const Index = ({ title, children }: layoutProps) => {
                   sx={(theme) => ({
                     paddingTop: theme.spacing.sm,
                     display: 'flex',
-                    justifyContent: 'center',
-                    borderTop: `1px solid ${
-                      theme.colorScheme === 'dark'
-                        ? theme.colors.dark[4]
-                        : theme.colors.gray[2]
-                    }`
+                    justifyContent: 'center'
                   })}
                 >
                   <Text size="sm" color="dimmed">
@@ -201,10 +117,25 @@ const Index = ({ title, children }: layoutProps) => {
             </Navbar>
           </Paper>
 
-          <Paper withBorder sx={{ width: '100%', height: '100%' }} p="md">
-            <ScrollArea style={{ height: '100%' }}>{children}</ScrollArea>
+          <Paper withBorder sx={{ width: '100%', height: '100%' }}>
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                size="md"
+                color="gray"
+                p="lg"
+                aria-label="menu"
+              />
+            </MediaQuery>
+            <ScrollArea
+              offsetScrollbars
+              style={{ height: '100%', width: '100%', margin: '0 auto' }}
+            >
+              {children}
+            </ScrollArea>
           </Paper>
-        </Box>
+        </Container>
       </Center>
     </>
   )

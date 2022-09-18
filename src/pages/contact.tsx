@@ -1,4 +1,4 @@
-import { Box, Title, Text } from '@mantine/core'
+import { Stack, Text, Title } from '@mantine/core'
 import React from 'react'
 import ContactForm from '../components/atoms/ContactForm'
 import Layout from '../layout'
@@ -13,17 +13,7 @@ const Contact = () => {
   }, [status])
 
   return (
-    <Box
-      sx={(theme) => ({
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '0.5rem',
-        margin: '0 0.5rem',
-        width: '100%',
-        backgroundColor: theme.colors.grey,
-        alignItems: 'flex-start'
-      })}
-    >
+    <Stack p="md">
       <Title p="xs">Say Hello👋</Title>
       {status === 'success' && (
         <Text align="center" color="green" p="xs">
@@ -33,7 +23,7 @@ const Contact = () => {
       )}
       {status === 'error' && <Text> Summision failed,try again later...</Text>}
       <ContactForm setSubmitted={setStatus} sucess={success} />
-    </Box>
+    </Stack>
   )
 }
 

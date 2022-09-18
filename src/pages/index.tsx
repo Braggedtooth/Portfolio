@@ -1,21 +1,10 @@
-import
-  {
-    Anchor,
-    Badge,
-    Center,
-    Group,
-    Paper, Stack,
-    Text,
-    Title,
-    useMantineTheme
-  } from '@mantine/core'
+import { Group, Stack, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { GetStaticProps } from 'next'
-import Image from 'next/image'
 import React from 'react'
-import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
-import { MdEmail, MdPhone } from 'react-icons/md'
-import ContactPill from '../components/molecules/ContactPill'
+import { AiFillGithub, AiFillLinkedin, AiOutlineGlobal } from 'react-icons/ai'
+import MainLink from '../components/molecules/MainLink'
+import Profile from '../components/molecules/Profile'
 import getProjectData from '../data/project'
 import getUserData from '../data/user'
 import Layout from '../layout'
@@ -36,22 +25,10 @@ const Index = ({ user }: userProps) => {
   }, [])
 
   return (
-
-      <Stack align="center" sx={{ textAlign: 'center' }}>
-        <Stack my={theme.spacing.lg} align="center">
-          {/*  <ImageContainer> */}
-          <Image
-            src={user.imgUrl}
-            height={150}
-            width={150}
-            alt="github profile image"
-            style={{
-              borderRadius: '50%'
-            }}
-          />
-
-          <Stack sx={{ width: media ? '70%' : '100%' }}>
-            <div>
+    <Stack align="center" sx={{ textAlign: 'center' }}>
+      <Stack my={theme.spacing.lg} align="center">
+        <Stack>
+          {/*  <div>
               <Title align="center" order={2}>
                 {user.name}
               </Title>
@@ -61,66 +38,37 @@ const Index = ({ user }: userProps) => {
               <Text color="gray" size="md" pb="sm">
                 {user.about}
               </Text>
-            </Paper>
-            <Group position="center">
-              <Badge
-                sx={{ paddingLeft: 0 }}
-                size="lg"
-                radius="xl"
-                leftSection={
-                  <Center px="sm">
-                    <AiFillLinkedin size={20} />
-                  </Center>
-                }
-              >
-                <Anchor href={user.linkedin}>Linkedin</Anchor>
-              </Badge>
-              <Badge
-                sx={{ paddingLeft: 0 }}
-                size="lg"
-                radius="xl"
-                color="gray"
-                variant="outline"
-                leftSection={
-                  <Center px="sm">
-                    <AiFillGithub size={20} />{' '}
-                  </Center>
-                }
-              >
-                <Anchor href={user.github}>Github</Anchor>
-              </Badge>
+            </Paper> */}
+          <Profile
+            avatar={user.imgUrl}
+            name={user.name}
+            job={user.worktitle}
+            email="adebayo.ajayi@viabay.se"
+          >
+            <Group position="center" p="md">
+              <MainLink
+                icon={<AiFillGithub />}
+                label="Github"
+                external
+                link={user.github}
+              />
+              <MainLink
+                icon={<AiFillLinkedin />}
+                label="Linkedin"
+                external
+                link={user.linkedin}
+              />
+              <MainLink
+                icon={<AiOutlineGlobal />}
+                label="Viabay"
+                external
+                link="https://viabay.se"
+              />
             </Group>
-
-            <Group position="center" align="center">
-              <ContactPill
-                iconColor="green"
-                Icon={MdPhone}
-                details={`+${user.contact.telephone.toString()}`}
-                as="phone"
-              />
-              <ContactPill
-                iconColor="red"
-                Icon={MdEmail}
-                details={user.contact.email}
-                as="email"
-              />
-              {/*          <ContactPill
-                iconColor="blue"
-                Icon={MdPermContactCalendar}
-                details={`${calculateAge(new Date(user.dob))} years old`}
-                as="birthday"
-              />
-              <ContactPill
-                iconColor="blue"
-                Icon={MdLocationCity}
-                details={user.city}
-                as="location"
-              /> */}
-            </Group>
-          </Stack>
+          </Profile>
         </Stack>
       </Stack>
-
+    </Stack>
   )
 }
 

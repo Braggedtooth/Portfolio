@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { Box, Card } from '@mantine/core'
+import Image from 'next/image'
 import IProject from '../../types/projects'
 import truncate from '../../utils/truncate'
 

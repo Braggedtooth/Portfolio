@@ -1,4 +1,4 @@
-import { Button, Center, Textarea, TextInput } from '@mantine/core'
+import { Button, Textarea, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import axios from 'axios'
 import React from 'react'
@@ -66,55 +66,53 @@ export default function ContactForm({ sucess, setSubmitted }: FormProps) {
   }, [form.values.message])
 
   return (
-    <Center sx={{ width: '100%' }} p="xs">
-      <form
-        name="contact"
-        onSubmit={form.onSubmit(onSubmit)}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%'
-        }}
-      >
-        <TextInput
-          name="name"
-          id="name"
-          label="Name"
-          placeholder="Your name"
-          required
-          {...form.getInputProps('name')}
-          error={form.errors.name}
-        />
+    <form
+      name="contact"
+      onSubmit={form.onSubmit(onSubmit)}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%'
+      }}
+    >
+      <TextInput
+        name="name"
+        id="name"
+        label="Name"
+        placeholder="Your name"
+        required
+        {...form.getInputProps('name')}
+        error={form.errors.name}
+      />
 
-        <TextInput
-          name="email"
-          id="email"
-          label="Email"
-          placeholder="Your email"
-          type="email"
-          required
-          error={form.errors.email}
-          {...form.getInputProps('email')}
-        />
-        <Textarea
-          required
-          label={`Message - (${charCount}/200)`}
-          placeholder="Your message"
-          minRows={4}
-          maxLength={200}
-          error={form.errors.message}
-          {...form.getInputProps('message')}
-        />
-        <Button
-          type="submit"
-          aria-label="submit form"
-          disabled={!!sucess}
-          my="md"
-          loading={loading}
-        >
-          {!sucess ? 'Submit' : 'Submitted'}
-        </Button>
-      </form>
-    </Center>
+      <TextInput
+        name="email"
+        id="email"
+        label="Email"
+        placeholder="Your email"
+        type="email"
+        required
+        error={form.errors.email}
+        {...form.getInputProps('email')}
+      />
+      <Textarea
+        required
+        label={`Message - (${charCount}/200)`}
+        placeholder="Your message"
+        minRows={4}
+        maxLength={200}
+        error={form.errors.message}
+        {...form.getInputProps('message')}
+      />
+      <Button
+        type="submit"
+        aria-label="submit form"
+        disabled={!!sucess}
+        my="md"
+        loading={loading}
+      >
+        {!sucess ? 'Submit' : 'Submitted'}
+      </Button>
+    </form>
   )
 }
