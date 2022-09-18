@@ -1,8 +1,16 @@
-import { Button, Textarea, TextInput } from '@mantine/core'
+import {
+  Button,
+  Group,
+  Stack,
+  Textarea,
+  TextInput,
+  useMantineTheme
+} from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import axios from 'axios'
 import React from 'react'
-import { EMIAL_REGEX } from '../../utils/constants'
+import { MdCheckCircleOutline, MdOutlineCancel } from 'react-icons/md'
+import { EMIAL_REGEX } from '../utils/constants'
 
 interface FormPost {
   name: string
@@ -64,55 +72,80 @@ export default function ContactForm({ sucess, setSubmitted }: FormProps) {
   React.useEffect(() => {
     setCharCount(form.values.message.length)
   }, [form.values.message])
-
+  const theme = useMantineTheme()
   return (
-    <form
-      name="contact"
-      onSubmit={form.onSubmit(onSubmit)}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%'
-      }}
-    >
-      <TextInput
-        name="name"
-        id="name"
-        label="Name"
-        placeholder="Your name"
-        required
-        {...form.getInputProps('name')}
-        error={form.errors.name}
-      />
+    <Stack p="xl">
+      <form name="contact" onSubmit={form.onSubmit(onSubmit)}>
+        <TextInput
+          name="name"
+          id="name"
+          label="Name"
+          type="text"
+          placeholder="Your name"
+          required
+          {...form.getInputProps('name')}
+          error={form.errors.name}
+        />
 
-      <TextInput
-        name="email"
-        id="email"
-        label="Email"
-        placeholder="Your email"
-        type="email"
-        required
-        error={form.errors.email}
-        {...form.getInputProps('email')}
-      />
-      <Textarea
-        required
-        label={`Message - (${charCount}/200)`}
-        placeholder="Your message"
-        minRows={4}
-        maxLength={200}
-        error={form.errors.message}
-        {...form.getInputProps('message')}
-      />
-      <Button
-        type="submit"
-        aria-label="submit form"
-        disabled={!!sucess}
-        my="md"
-        loading={loading}
-      >
-        {!sucess ? 'Submit' : 'Submitted'}
-      </Button>
-    </form>
+        <TextInput
+          name="email"
+          id="email"
+          label="Email"
+          placeholder="Your email"
+          type="email"
+          required
+          error={form.errors.email}
+          {...form.getInputProps('email')}
+        />
+        <Textarea
+          required
+          label={`Message - (${charCount}/200) `}
+          rightSectionProps={{
+            style: {
+              display: 'flex',
+              paddingTop: '5px',
+              flexDirection: 'column',
+              justifyContent: 'flex-start'
+            }
+          }}
+          rightSection={
+            // eslint-disable-next-line no-nested-ternary
+            charCount > 0 ? (
+              charCount > 20 ? (
+                <MdCheckCircleOutline
+                  size={20}
+                  stroke="2.5"
+                  color={theme.colors.teal[6]}
+                />
+              ) : (
+                <MdOutlineCancel size={20} stroke="2.5" />
+              )
+            ) : null
+          }
+          styles={{
+            label: {
+              color: charCount > 20 && theme.colors.teal[3]
+            }
+          }}
+          placeholder="Your message"
+          minRows={4}
+          maxLength={200}
+          error={form.errors.message}
+          {...form.getInputProps('message')}
+        />
+        <Group position="right">
+          <Button
+            type="submit"
+            aria-label="submit form"
+            disabled={!!sucess}
+            my="md"
+            color="teal"
+            loading={loading}
+          >
+            {!sucess ? 'Submit' : 'Submitted'}
+          </Button>
+        </Group>
+      </form>
+    </Stack>
   )
 }

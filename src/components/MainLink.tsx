@@ -35,13 +35,12 @@ const useStyles = createStyles((theme, _params, getref) => {
           theme.colorScheme === 'dark'
             ? theme.colors.dark[6]
             : theme.colors.gray[1],
-        color:
-          theme.colorScheme === 'dark' ? theme.colors.blue[4] : theme.black,
+        color: theme.colorScheme === 'dark' ? theme.colors.blue[4] : theme.black
 
-        [`& .${icon}`]: {
+        /*   [`& .${icon}`]: {
           color:
             theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.black
-        }
+        } */
       }
     },
 

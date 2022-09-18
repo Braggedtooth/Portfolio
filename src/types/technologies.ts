@@ -12,8 +12,10 @@ type Technologies =
   | 'Prisma'
   | 'Javascript'
   | 'React Native'
-  | 'Others'
   | 'Docker'
   | 'Git'
+  | 'Frontend'
+  | 'Backend'
+  | 'Fullstack'
 
 export default Technologies

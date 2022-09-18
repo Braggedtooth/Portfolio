@@ -1,73 +1,84 @@
-import { Group, Stack, useMantineTheme } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
+import { Paper, SimpleGrid, Stack, Title } from '@mantine/core'
 import { GetStaticProps } from 'next'
 import React from 'react'
-import { AiFillGithub, AiFillLinkedin, AiOutlineGlobal } from 'react-icons/ai'
-import MainLink from '../components/molecules/MainLink'
-import Profile from '../components/molecules/Profile'
+import { IconType } from 'react-icons'
+import { FaLaravel, FaNodeJs, FaReact } from 'react-icons/fa'
+import { SiMongodb, SiNestjs, SiPrisma, SiTypescript } from 'react-icons/si'
+import {
+  TbApi,
+  TbBrandAngular,
+  TbBrandDocker,
+  TbBrandGit,
+  TbBrandJavascript,
+  TbBrandNextjs,
+  TbBrandReactNative
+} from 'react-icons/tb'
+import BadgeCard from '../components/Projects'
 import getProjectData from '../data/project'
-import getUserData from '../data/user'
 import Layout from '../layout'
-import IUser from '../types/user'
+import IProject from '../types/projects'
+import Technologies from '../types/technologies'
 import { REVALIDATE_SECONDS } from '../utils/constants'
 
-type userProps = {
-  user: IUser
+type Techs = Exclude<Technologies, 'Backend' | 'Frontend' | 'Fullstack'>
+
+const TechIcons: Record<Techs, IconType> = {
+  'React Native': TbBrandReactNative,
+  Angular: TbBrandAngular,
+  API: TbApi,
+  Docker: TbBrandDocker,
+  Express: TbApi,
+  Git: TbBrandGit,
+  Javascript: TbBrandJavascript,
+  Laravel: FaLaravel,
+  MongoDB: SiMongodb,
+  Nestjs: SiNestjs,
+  Nextjs: TbBrandNextjs,
+  Nodejs: FaNodeJs,
+  Prisma: SiPrisma,
+  React: FaReact,
+  Typescript: SiTypescript
 }
 
-const Index = ({ user }: userProps) => {
-  const theme = useMantineTheme()
-  const media = useMediaQuery(`(min-width:${theme.breakpoints.md}px)`)
-  const [isMounted, setIsMounted] = React.useState(false)
-
-  React.useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
+const Index = ({ projects }: { projects: IProject[] }) => {
   return (
-    <Stack align="center" sx={{ textAlign: 'center' }}>
-      <Stack my={theme.spacing.lg} align="center">
-        <Stack>
-          {/*  <div>
-              <Title align="center" order={2}>
-                {user.name}
-              </Title>
-              <Text color="dimmed"> {user.worktitle}</Text>
-            </div>
-            <Paper withBorder p="sm">
-              <Text color="gray" size="md" pb="sm">
-                {user.about}
-              </Text>
-            </Paper> */}
-          <Profile
-            avatar={user.imgUrl}
-            name={user.name}
-            job={user.worktitle}
-            email="adebayo.ajayi@viabay.se"
-          >
-            <Group position="center" p="md">
-              <MainLink
-                icon={<AiFillGithub />}
-                label="Github"
-                external
-                link={user.github}
+    <Stack
+      align="center"
+      sx={{ textAlign: 'center', height: '100%', width: '100%' }}
+      justify="center"
+    >
+      <Paper radius={0}>
+        <Title order={2} align="left" px="xl" pt="sm">
+          Projects📂
+        </Title>
+        <SimpleGrid
+          cols={2}
+          p="xl"
+          breakpoints={[
+            { maxWidth: 980, cols: 2, spacing: 'md' },
+            { maxWidth: 755, cols: 2, spacing: 'sm' },
+            { maxWidth: 600, cols: 1, spacing: 'sm' }
+          ]}
+        >
+          {projects.map((project) => {
+            return (
+              <BadgeCard
+                website={project.website}
+                github={project.github}
+                key={project.id}
+                image={project.image}
+                title={project.name}
+                country={project.technologies[0]}
+                description={project.description}
+                badges={project.technologies.slice(1).map((tech) => ({
+                  label: tech,
+                  emoji: TechIcons[tech]
+                }))}
               />
-              <MainLink
-                icon={<AiFillLinkedin />}
-                label="Linkedin"
-                external
-                link={user.linkedin}
-              />
-              <MainLink
-                icon={<AiOutlineGlobal />}
-                label="Viabay"
-                external
-                link="https://viabay.se"
-              />
-            </Group>
-          </Profile>
-        </Stack>
-      </Stack>
+            )
+          })}
+        </SimpleGrid>
+      </Paper>
     </Stack>
   )
 }
@@ -77,11 +88,9 @@ Index.getLayout = (page: React.ReactElement) => (
   <Layout title="Home">{page}</Layout>
 )
 export const getStaticProps: GetStaticProps = async () => {
-  const user = await getUserData()
   const projects = await getProjectData()
   return {
     props: {
-      user,
       projects
     },
     revalidate: REVALIDATE_SECONDS

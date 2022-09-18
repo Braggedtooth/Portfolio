@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Bayo.se",
-  "short_name": "bayo.se",
+  "name": "Portfolio - Adebayo",
+  "short_name": "Portfolio",
   "icons": [
     {
       "src": "/icon-192.png",

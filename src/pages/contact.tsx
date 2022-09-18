@@ -1,6 +1,6 @@
 import { Stack, Text, Title } from '@mantine/core'
 import React from 'react'
-import ContactForm from '../components/atoms/ContactForm'
+import ContactForm from '../components/ContactForm'
 import Layout from '../layout'
 
 const Contact = () => {
@@ -13,15 +13,20 @@ const Contact = () => {
   }, [status])
 
   return (
-    <Stack p="md">
-      <Title p="xs">Say Hello👋</Title>
+    <Stack sx={{ height: '100%', width: '100%' }}>
+      <Title order={2} align="left" px="xl" pt="sm">
+        Contact Me 👋
+      </Title>
       {status === 'success' && (
         <Text align="center" color="green" p="xs">
-          {' '}
-          Summision recieved, i will be in touch
+          Message sent!
         </Text>
       )}
-      {status === 'error' && <Text> Summision failed,try again later...</Text>}
+      {status === 'error' && (
+        <Text align="center" color="red" p="xs">
+          Could not deliver your message, try again later...
+        </Text>
+      )}
       <ContactForm setSubmitted={setStatus} sucess={success} />
     </Stack>
   )

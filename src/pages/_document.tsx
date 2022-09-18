@@ -1,3 +1,4 @@
+import { createStylesServer, ServerStyles } from '@mantine/next'
 import Document, {
   DocumentContext,
   Head,
@@ -6,12 +7,21 @@ import Document, {
   NextScript
 } from 'next/document'
 
+const stylesServer = createStylesServer()
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
 
     return {
-      ...initialProps
+      ...initialProps,
+      styles: [
+        initialProps.styles,
+        <ServerStyles
+          html={initialProps.html}
+          server={stylesServer}
+          key="styles"
+        />
+      ]
     }
   }
 
@@ -20,10 +30,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="theme-color" content="#fff" />
-          <meta
-            name="description"
-            content="Bayo.se is a portfolio website for Adebayo Ajayi."
-          />
+          <meta name="description" content="Adebayo Ajayi portfolio website." />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="manifest" href="/manifest.json" />
