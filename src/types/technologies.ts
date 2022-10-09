@@ -17,5 +17,7 @@ type Technologies =
   | 'Frontend'
   | 'Backend'
   | 'Fullstack'
+  | 'TRPC'
+  | 'Astro'
 
 export default Technologies

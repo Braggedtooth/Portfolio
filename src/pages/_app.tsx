@@ -1,7 +1,7 @@
-import type { AppProps } from 'next/app'
-import { NextPage } from 'next'
-import { ReactElement } from 'react'
 import { MantineProvider } from '@mantine/core'
+import { NextPage } from 'next'
+import type { AppProps } from 'next/app'
+import { ReactElement, useEffect, useState } from 'react'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement, _props: any) => typeof page
@@ -13,18 +13,22 @@ type AppPropsWithLayout = AppProps & {
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page, _props) => page)
-
+  const [state, setState] = useState(false)
+  useEffect(() => {
+    setState(true)
+  }, [])
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{
-        /** Put your mantine theme override here */
-        colorScheme: 'dark'
-      }}
-    >
-      {getLayout(<Component {...pageProps} />, pageProps)}
-    </MantineProvider>
+    state && (
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          colorScheme: 'dark'
+        }}
+      >
+        {getLayout(<Component {...pageProps} />, pageProps)}
+      </MantineProvider>
+    )
   )
 }
 

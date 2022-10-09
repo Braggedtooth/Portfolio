@@ -4,14 +4,13 @@ import { MdTab } from 'react-icons/md'
 import Layout from '../layout'
 
 const Resume = () => {
-  const resume = 'resume_adebayo_ajayi.pdf'
   return (
     <Stack style={{ height: '60vh' }} px="xl">
       <Title order={2} align="left" pt="sm">
         Resumé📄
       </Title>
       <iframe
-        src={`${resume}`}
+        src="resume_adebayo_ajayi.pdf"
         title="Resume"
         height="100%"
         width="100%"
@@ -19,7 +18,7 @@ const Resume = () => {
       />
       <Anchor
         color="teal"
-        href={resume}
+        href="resume_adebayo_ajayi.pdf"
         target="_blank"
         aria-label="open resume in new tab"
       >

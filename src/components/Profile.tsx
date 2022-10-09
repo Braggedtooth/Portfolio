@@ -38,26 +38,26 @@ export default function Profile() {
       <Text align="center" color="dimmed" size="sm">
         {profile.email} • {profile.title}
       </Text>
-      <Group position="center" p="md">
-          <MainLink
-            icon={<AiFillGithub />}
-            label="Github"
-            external
-            link={profile.github}
-          />
-          <MainLink
-            icon={<AiFillLinkedin />}
-            label="Linkedin"
-            external
-            link={profile.linkedin}
-          />
-          <MainLink
-            icon={<AiOutlineGlobal />}
-            label="Viabay"
-            external
-            link={profile.website}
-          />
-        </Group>
+      <Group position="center" my="sm">
+        <MainLink
+          icon={<AiFillGithub />}
+          label="Github"
+          external
+          link={profile.github}
+        />
+        <MainLink
+          icon={<AiFillLinkedin />}
+          label="Linkedin"
+          external
+          link={profile.linkedin}
+        />
+        <MainLink
+          icon={<AiOutlineGlobal />}
+          label="Viabay"
+          external
+          link={profile.website}
+        />
+      </Group>
     </Paper>
   )
 }

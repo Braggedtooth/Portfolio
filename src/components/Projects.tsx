@@ -6,7 +6,8 @@ import {
   createStyles,
   Group,
   Image,
-  Text
+  Text,
+  Title
 } from '@mantine/core'
 import { IconType } from 'react-icons'
 import { AiFillGithub } from 'react-icons/ai'
@@ -85,12 +86,10 @@ export default function BadgeCard({
 
       <Card.Section className={classes.section} mt="md" sx={{ flexGrow: 1 }}>
         <Group position="apart">
-          <Text size="lg" weight={500}>
-            {title}
-          </Text>
+          <Title order={4}>{title}</Title>
           <Badge size="sm">{country}</Badge>
         </Group>
-        <Text size="sm" mt="xs">
+        <Text mt="xs" p="xs" align="left">
           {description}
         </Text>
       </Card.Section>
@@ -99,7 +98,7 @@ export default function BadgeCard({
         <Text mt="md" className={classes.label} color="dimmed">
           Tech Stack
         </Text>
-        <Group spacing={7} mt={5}>
+        <Group spacing={5} mt={5} p="md" position="center">
           {features}
         </Group>
       </Card.Section>
